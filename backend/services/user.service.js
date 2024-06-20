@@ -20,6 +20,13 @@ class userService{
     static generateToken(userToken, secretKey, jwt_expires){
         return jwt.sign(userToken, secretKey, {expiresIn: jwt_expires});
     }
+    static async logOutUser(email, req){
+        try {
+            await userModel.findOneAndUpdate({email}, req.body);
+        } catch (error) {
+            throw err
+        }
+    }
 };
 
 module.exports = userService;

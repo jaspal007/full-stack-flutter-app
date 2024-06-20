@@ -6,11 +6,7 @@ import 'package:todo/login.dart';
 
 // ignore: must_be_immutable
 class MySignUp extends StatefulWidget {
-  int index;
-  MySignUp({
-    super.key,
-    required this.index,
-  });
+  const MySignUp({super.key});
 
   @override
   State<MySignUp> createState() => _MySignUpState();
@@ -22,12 +18,12 @@ class _MySignUpState extends State<MySignUp> {
   bool isValid = true;
   bool isHidden = true;
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   email.dispose();
-  //   password.dispose();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    email.dispose();
+    password.dispose();
+  }
 
   void onSubmit() async {
     if (email.text.trim().isEmpty || !email.text.contains('@')) {
@@ -71,7 +67,7 @@ class _MySignUpState extends State<MySignUp> {
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => const Scaffold(
@@ -134,6 +130,27 @@ class _MySignUpState extends State<MySignUp> {
           ElevatedButton(
             onPressed: onSubmit,
             child: const Text('Register'),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(20),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Scaffold(
+                    body: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyLogin(),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            child: const Text('Alerady an account? Login'),
           ),
         ],
       ),

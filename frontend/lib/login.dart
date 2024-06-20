@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/dashboard.dart';
 import 'package:todo/globalVariables.dart';
+import 'package:todo/signup.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -74,8 +75,8 @@ class _MyLoginState extends State<MyLogin> {
     var jsonResponse = jsonDecode(response.body);
     print('response: ${jsonResponse['token']}');
     var userToken = jsonResponse['token'];
-    pref.setString('token', userToken);
-    Navigator.push(
+    await pref.setString('token', userToken);
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => MyDashboard(
@@ -130,6 +131,27 @@ class _MyLoginState extends State<MyLogin> {
           ElevatedButton(
             onPressed: onSubmit,
             child: const Text('Login'),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(20),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Scaffold(
+                    body: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MySignUp(),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            child: const Text('New Here? SignUp'),
           ),
         ],
       ),

@@ -39,5 +39,13 @@ userSchema.methods.comparePassword = async function(userPassword){
   }
 }
 
+// userSchema.methods.attachToken = function(token){
+//   try {
+//     this.token = token;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+
 const userModel = mongoose.model('user', userSchema);
 module.exports = userModel;
