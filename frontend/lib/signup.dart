@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:todo/globalVariables.dart';
+import 'package:todo/global_variables.dart';
 import 'package:todo/login.dart';
 
 // ignore: must_be_immutable

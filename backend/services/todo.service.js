@@ -5,8 +5,8 @@ class todoService{
         const createTodo = new todoModel({userId, title, desc});
         return await createTodo.save();
     }
-    static async getTodos(){
-        const todo = await todoModel.find({});
+    static async getTodos(userId){
+        const todo = await todoModel.find({userId});
         return todo;
     }
     static async getTodo(id, res){
